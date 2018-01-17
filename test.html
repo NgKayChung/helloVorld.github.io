@@ -37,9 +37,9 @@ function load()
 		navigator.getUserMedia({audio: false, video: true}, function(st) {
 			userStream = st;
 			var videoTracks = userStream.getVideoTracks();
-			if(videoTracks.length > 0) {
-				videoTracks[0].stop();
-				userStream.removeTrack(videoTracks[0]);
+			//if(videoTracks.length > 0) {
+				//videoTracks[0].stop();
+				//userStream.removeTrack(videoTracks[0]);
 			}
 		}, function(err) {
 			console.log(err);
@@ -137,7 +137,7 @@ function setwebcam2(options)
     document.getElementById("result").innerHTML="- scanning -";
     document.getElementById("outdiv").innerHTML = vidhtml;
     v = document.getElementById("v");
-    v.style.transform = 'rotateX(180deg)';
+    //v.style.transform = 'rotateX(180deg)';
     navigator.getUserMedia({video: options, audio: false}, success, error);
 }
 function success(stream) {
@@ -175,7 +175,7 @@ function startDecode() {
     // the result and then prepares the
     // videoElement to send its source to the
     // decoder.
-    QCodeDecoder().decodeFromCamera(v, function(er,res){
+    QCodeDecoder().decodeFromCamera(v, function(err,res){
 	if(res != undefined)
 		alert(res);
     });
