@@ -37,9 +37,9 @@ function load()
 		navigator.getUserMedia({audio: false, video: true}, function(st) {
 			userStream = st;
 			var videoTracks = userStream.getVideoTracks();
-			//if(videoTracks.length > 0) {
-				//videoTracks[0].stop();
-				//userStream.removeTrack(videoTracks[0]);
+			if(videoTracks.length > 0) {
+				videoTracks[0].stop();
+				userStream.removeTrack(videoTracks[0]);
 			}
 		}, function(err) {
 			console.log(err);
@@ -72,6 +72,7 @@ function initCanvas(ww,hh)
 	h = hh;
 	gCanvas.style.width = w + "px";
 	gCanvas.style.height = h + "px";
+	gCanvas.style.visibility = 'hidden';
 	gCanvas.width = w;
 	gCanvas.height = h;
 	gCtx = gCanvas.getContext("2d");
@@ -80,7 +81,6 @@ function initCanvas(ww,hh)
 function captureToCanvas()
 {
     try {
-		gCtx.clearRect(0, 0, w, h);
         	gCtx.drawImage(v, 0, 0, w, h);
     }
     catch(e) {       
@@ -103,12 +103,12 @@ function setwebcam()
 				});
 				var tempId = ids.shift();
 				ids.push(tempId);
-				tempId = ids.shift();
-				ids.push(tempId);
+				//tempId = ids.shift();
+				//ids.push(tempId);
 				var tempLabel = labels.shift();
 				labels.push(tempLabel);
-				tempLabel = labels.shift();
-				labels.push(tempLabel);
+				//tempLabel = labels.shift();
+				//labels.push(tempLabel);
 				
 				if(ids.length === 1)
 					options = {deviceId: tempId, focusMode: false, facingMode: 'environment'};
@@ -118,6 +118,7 @@ function setwebcam()
 					else {
 						options = {deviceId: tempId}; alert('environment');}
 				}
+				
 				setwebcam2(options);
 			});
 		    	
@@ -137,7 +138,6 @@ function setwebcam2(options)
     document.getElementById("result").innerHTML="- scanning -";
     document.getElementById("outdiv").innerHTML = vidhtml;
     v = document.getElementById("v");
-    //v.style.transform = 'rotateX(180deg)';
     navigator.getUserMedia({video: options, audio: false}, success, error);
 }
 function success(stream) {
@@ -175,7 +175,7 @@ function startDecode() {
     // the result and then prepares the
     // videoElement to send its source to the
     // decoder.
-    QCodeDecoder().decodeFromCamera(v, function(err,res){
+    QCodeDecoder().decodeFromVideo(v, function(er,res) {
 	if(res != undefined)
 		alert(res);
     });
@@ -200,6 +200,6 @@ function startDecode() {
 <!--div id = "flipp"></div-->
 <div id="outdiv"></div>
 <div id = "result"></div>
-<canvas id = "qr-canvas"></canvas>
+<!--canvas id = "qr-canvas"></canvas-->
 </body>
 </html>
