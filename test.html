@@ -1,4 +1,202 @@
 <html>
+<head>
+<title>Reader Test</title>
+<script src = "qcode\build\qcode-decoder.min.js"></script>
+<!--style>
+@media screen and (max-width: 750px) {
+	#v { 
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		z-index: -100;
+		background-size: cover; 
+	}
+}
+</style-->
+<script type = "text/javascript">
+var v=null;
+var webkit=false;
+var moz=false;
+var ms=false;
+var ids = [];
+var vidhtml = '<video id="v" autoplay></video>';
+var fliphtml = '<button id = "flipbtn">Flip Camera</button>';
+var formhtml = '<form method = "get">' +
+		'Full Name : <input type = "text" length = "50" id = "fullname" name = "fullname" required/><br/>' +
+    		'Identity Card Number : <input type = "text" length = "12" id = "icnumber" name = "icnumber" required/><br/>' +
+		'Email Address : <input type = "email" id = "emailAddress" name = "emailAddress" required/><br/>' +
+    		'Phone Number : <input type = "text" id = "phoneNumber" name = "phoneNumber" required/><br/>' +
+    		'<input type = "submit" name = "submit"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type = "reset" name = "reset"/>' +
+    		'</form>';
+var userStream;
+function successRes(st)
+{
+	userStream = st;
+	stopMedia();
+}
+function stopMedia()
+{
+	var videoTracks = userStream.getVideoTracks();
+	if(videoTracks.length > 0) {
+		videoTracks[0].stop();
+		userStream.removeTrack(videoTracks[0]);
+	}
+}
+function load()
+{
+	if(navigator.webkitGetUserMedia) {
+		webkit = true;
+		navigator.webkitGetUserMedia({audio: false, video: true}, successRes, error);
+	}
+	else if(navigator.mozGetUserMedia) {
+		moz = true;
+		navigator.mozGetUserMedia({audio: false, video: true}, successRes, error);
+	}
+	else if(navigator.msGetUserMedia) {
+		ms = true;
+		navigator.msGetUserMedia({audio: false, video: true}, successRes, error);
+	}
+	else if(navigator.getUserMedia) {
+		std = true;
+		navigator.getUserMedia({audio: false, video: true}, successRes, error);
+	}
+	else {
+		alert('Web scanning is not supported, please proceed to upload image to complete the registration');
+		return false;
+	}
+	return true;
+}
+</script>
+<script type = "text/javascript">
+function setwebcam()
+{
+	if(!load()) {
+		//change to upload image
+		return;
+	}
+	
+	//document.getElementById('scannerbtn').style.display = 'none';
+	ids = [];
+	var options = null;
+	
+	if(navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+	    try {
+			navigator.mediaDevices.enumerateDevices().then(function(devices) {
+				devices.forEach(function(device) {
+					if(device.kind === 'videoinput') {
+						ids.unshift(device.deviceId);
+						//labels.push(device.label);
+					}
+				});
+				var tempId = ids.pop();
+				ids.unshift(tempId);
+				//var tempLabel = labels.shift();
+				//labels.push(tempLabel);
+				//tempId = ids.shift();
+				//ids.push(tempId);
+				//tempLabel = labels.shift();
+				//labels.push(tempLabel);
+				
+				options = {deviceId: tempId};
+				if(ids.length > 1) {
+					//create flip button
+					document.getElementById("flipp").innerHTML = fliphtml;
+    					document.getElementById("flipbtn").addEventListener('click', flipCamera);
+				}
+				
+				setwebcam2(options);
+			});
+		}
+		catch(e) {
+			console.log(e);
+		}
+	}
+	else {
+		console.log("no navigator.mediaDevices.enumerateDevices" );
+	}
+}
+function setwebcam2(options)
+{
+    document.getElementById("result").innerHTML="- scanning -";
+    document.getElementById("outdiv").innerHTML = vidhtml;
+	
+    v = document.getElementById("v");
+	
+    navigator.webkitGetUserMedia({video: options, audio: false}, success, error);
+}
+function success(stream) {
+    userStream = stream;
+    //if ("srcObject" in v) {
+    //	v.srcObject = stream;
+    //}
+    //else {
+    v.src = window.URL.createObjectURL(stream);
+    //}
+    
+    startDecode();
+}
+		
+function error(err)
+{
+    console.log(err);
+    return;
+}
+var done = false;
+var errCount = 0;
+function startDecode() {
+    'use strict';
+    
+    var qr = QCodeDecoder();
+    qr.decodeFromVideo(v, function(er,res) {
+	if(er) {
+		errCount++;
+		if(errCount >= 5) {
+			errCount = 0;
+			console.log(er);
+		}
+	}
+	
+	if(res && !done) {
+		done = true;
+		alert(res);
+		qr.stop();
+		v.src = "";
+		stopMedia();
+		var scanElem = document.getElementById('scannerbtn');
+		scanElem.remove();
+		document.getElementById('flipp').innerHTML = "";
+		document.getElementById('result').innerHTML = "Scan complete!!";
+		//document.getElementById("outdiv").innerHTML = formhtml;
+	}
+    }, true);
+}
+function flipCamera()
+{
+	stopMedia();
+	
+	var tempId = ids.pop();
+	ids.unshift(tempId);
+	//var tempLabel = labels.shift();
+	//labels.push(tempLabel);
+	
+	var options = {deviceId: tempId};
+	
+	setwebcam2(options);
+}
+</script>
+</head>
+<body>
+<button id = 'scannerbtn' onclick = 'setwebcam()'>Capture</button>
+<div id = "flipp"></div>
+<div id="outdiv"></div>
+<div id = "result"></div>
+</body>
+</html>
+<!--<html>
     <head>
         <title>Mobile Detection</title>
     </head>
@@ -18,6 +216,6 @@
     }
 </script>
 
-<!-- if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
     // Take the user to a different screen here.
 }-->
