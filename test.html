@@ -1,30 +1,18 @@
-<!DOCTYPE html>
 <html>
-<head>
-<style> 
-      body {
-    background-color: lightblue;
-    background-image: url(https://lh3.googleusercontent.com/Evfbam5RBGnFunAv5Kamw1DyBqXGNO4Yv4agqrx0_oFfabhSvyBLuOChZZo7FPEZXWh-Qg=s85);
-    background-position: center;
-    background-repeat: no-repeat;
-   }
- 
-    .center{
-    margin: auto;
-    width: 60%;
-    padding: 20px;
-    }
-      
-      .center1{
-      text-align: center;
-      }
-</style>
-</head>
-<body>
-
-	<form name="userinput">
-		
-	</form>
-
-</body>
+    <head>
+        <title>Mobile Detection</title>
+    </head>
+    <body>
+        <input type="button" OnClick="DetectIphone()" value="Am I an Iphone?" />
+    </body>
 </html>
+<script>
+    function DetectIphone()
+    {
+       var uagent = navigator.userAgent.toLowerCase();
+       if (uagent.search("iphone") > -1)
+          alert('true');
+       else
+          alert('false');
+    }
+</script>
