@@ -200,14 +200,28 @@ function flipCamera()
     <head>
         <title>Mobile Detection</title>
     </head>
+	<script src = "qcode\build\qcode-decoder.min.js"></script>
+	<!--@media screen and (max-width: 1000px) {
+	#v { 
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		z-index: -100;
+		background-size: cover; 
+	}
+}
+</style-->
 	<script>
 	function previewFile() {
 		
   		var preview = document.querySelector('img');
   		var file    = document.querySelector('input[type=file]').files[0];
   		var reader  = new FileReader();
-		var resize = new window.resize();
-		resize.init();
+		
 
   
 
@@ -215,13 +229,37 @@ function flipCamera()
     preview.src = reader.result;
   }, false);
 		
-  resize.photo(fileOrBlob, 800, 'dataURL', function (thumbnail) {
-    image.src = thumbnail;
-    }
+ 
   if (file) {
     reader.readAsDataURL(file);
   }
 		
+}
+var done = false;
+function startDecode() {
+    'use strict';
+    
+    var qr = QCodeDecoder();
+    qr.decodeFromVideo(v, function(er,res) {
+		if(er) {
+			console.log(er);
+		}
+		if(res && !done) {
+			done = true;
+			alert(res);
+			//qr.stop();
+			//set 'v' source to null
+			stopMedia();
+			var scanElem = document.getElementById('scannerbtn');
+			scanElem.remove();
+			//var flipElem = document.getElementById('flipp');
+			//flipElem.remove();
+			var resElem = document.getElementById('result');
+			resElem.innerHTML = "Scanned successfully!";
+			//resElem.style.color = "green";
+			//document.getElementById("outdiv").innerHTML = formhtml;
+		}
+    }, true);
 }
 	</script> 
     <body>
@@ -230,10 +268,10 @@ function flipCamera()
         <input type="file" id="imageFile" name="imageFile" accept="image/*"><br />
 	<button type="button" onclick="previewFile()">Upload Image</button>
 
-	<img id="qrcode" src=""/><br />
-	<button type="button" id="decodeBtn" disabled>Decode the QR Code</button>
+	<img id="qrcode" src="" height="200" alt="Image preview..."><br />
+	<button type="button" id="scannerbtn" onclick="startDecode()">Decode the QR Code</button>
 
-	<div id="output"></div>
+	<div id="result"></div>
     </body>
 </html>
 <!--<script>
@@ -249,4 +287,6 @@ function flipCamera()
 
  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
     // Take the user to a different screen here.
+	<img id="qrcode" src=""/><br />
+
 }-->
