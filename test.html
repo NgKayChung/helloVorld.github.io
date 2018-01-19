@@ -203,7 +203,13 @@ function flipCamera()
     <body>
         <!--<input type="button" OnClick="DetectIphone()" value="Am I an Iphone?" />-->
         
-        <input type="file" accept="image/*" capture="camera">
+        <input type="file" id="imageFile" name="imageFile" accept="image/*"><br />
+	<button type="button" id="uploadImgBtn">Upload Image</button>
+
+	<img id="qrcode" src=""/><br />
+	<button type="button" id="decodeBtn" disabled>Decode the QR Code</button>
+
+	<div id="output"></div>
     </body>
 </html>
 <script>
