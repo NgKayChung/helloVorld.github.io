@@ -213,7 +213,7 @@ function startDecode(){
     
          var qr = QCodeDecoder();
 
-         qr.decodeFromImage(output.toDataURL(), function(err, res){
+         qr.decodeFromImage(output, function(err, res){
 		if(er) {
 		console.log(er);
 		       }
