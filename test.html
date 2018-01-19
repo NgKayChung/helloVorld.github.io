@@ -214,7 +214,7 @@ function startDecode(){
          var qr = QCodeDecoder();
 
          qr.decodeFromImage(output, function(err, res){
-		if(er) {
+		if(err) {
 		console.log(er);
 		       }
 		if(res && !done) {
@@ -232,7 +232,7 @@ function startDecode(){
 	<img id="output"/>
         
 
-	<button type="button" onclick="startDecode()">Decode the QR Code</button>
+	<button id="scannerbtn" onclick="startDecode()">Decode the QR Code</button>
 
 	<div id="result"></div>
     </body>
