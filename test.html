@@ -235,12 +235,12 @@ function flipCamera()
   }
 		
 }
-var done = false;
+/*var done = false;
 function startDecode() {
     'use strict';
     
     var qr = QCodeDecoder();
-    qr.decodeFromVideo(v, function(er,res) {
+    qr.decodeFromImage(v, function(er,res) {
 		if(er) {
 			console.log(er);
 		}
@@ -260,6 +260,22 @@ function startDecode() {
 			//document.getElementById("outdiv").innerHTML = formhtml;
 		}
     }, true);
+}*/
+		window.onload = function() {
+  var img = document.querySelector('img');
+  var canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  var ctx = canvas.getContext('2d');
+  // rotate by 90 deg
+  ctx.rotate(Math.PI);
+  ctx.translate(-img.width, -img.height);
+  ctx.drawImage(img, 0, 0);
+  // decode
+  QCodeDecoder().decodeFromImage(canvas.toDataURL(), function(err, res){
+    document.body.appendChild(document.createTextNode(res||err))
+    });
+  
 }
 	</script> 
     <body>
@@ -268,7 +284,7 @@ function startDecode() {
         <input type="file" id="imageFile" name="imageFile" accept="image/*"><br />
 	<button type="button" onclick="previewFile()">Upload Image</button>
 
-	<img id="qrcode" src="" height="200" width="400" alt="Image preview..."><br />
+	<img id="qrcode" src="" alt="Image preview..."><br />
 	<button type="button" onclick="startDecode()">Decode the QR Code</button>
 
 	<div id="result"></div>
