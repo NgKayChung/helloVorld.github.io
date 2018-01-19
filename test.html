@@ -201,22 +201,44 @@ function flipCamera()
         <title>Mobile Detection</title>
     </head>
 	<script src = "qcode\build\qcode-decoder.min.js"></script>
-	<!--@media screen and (max-width: 1000px) {
-	#v { 
-		position: fixed;
-		right: 0;
-		bottom: 0;
-		min-width: 100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
-		z-index: -100;
-		background-size: cover; 
-	}
-}
-</style-->
+	
 	<script>
-	function previewFile() {
+	var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+		function startDecode(){
+		QCodeDecoder().decodeFromImage(canvas.toDataURL(), function(err, res){
+    document.body.appendChild(document.createTextNode(res||err))
+    });
+		}
+
+	</script> 
+    <body>
+        <!--<input type="button" OnClick="DetectIphone()" value="Am I an Iphone?" />-->
+	<!--<input type="file" id="imageFile" name="imageFile" accept="image/*"><br />
+	<button type="button" onclick="previewFile()">Upload Image</button>
+	<img id="qrcode" src="" alt="Image preview..."><br />-->
+        <input type="file" accept="image/*" onchange="loadFile(event)">
+	<img id="output"/>
+        
+
+	<button type="button" onclick="startDecode()">Decode the QR Code</button>
+
+	<div id="result"></div>
+    </body>
+</html>
+<!--<script>
+    function DetectIphone()
+    {
+       var uagent = navigator.userAgent.toLowerCase();
+       if (uagent.search("iphone") > -1)
+          alert('true');
+       else
+          alert('false');
+    }
+</script>
+/*function previewFile() {
 		
   		 var preview = document.querySelector('img');
 		 var canvas = document.createElement('canvas');
@@ -242,12 +264,10 @@ function flipCamera()
     reader.readAsDataURL(file);
   }
 		
-}
-		function startDecode(){
-		QCodeDecoder().decodeFromImage(canvas.toDataURL(), function(err, res){
-    document.body.appendChild(document.createTextNode(res||err))
-    });
-		}
+}*/
+ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+    // Take the user to a different screen here.
+	<img id="qrcode" src=""/><br />
 /*var done = false;
 function startDecode() {
     'use strict';
@@ -290,32 +310,18 @@ function startDecode() {
     });
   
 }*/
-	</script> 
-    <body>
-        <!--<input type="button" OnClick="DetectIphone()" value="Am I an Iphone?" />-->
-        
-        <input type="file" id="imageFile" name="imageFile" accept="image/*"><br />
-	<button type="button" onclick="previewFile()">Upload Image</button>
-
-	<img id="qrcode" src="" alt="Image preview..."><br />
-	<button type="button" onclick="startDecode()">Decode the QR Code</button>
-
-	<div id="result"></div>
-    </body>
-</html>
-<!--<script>
-    function DetectIphone()
-    {
-       var uagent = navigator.userAgent.toLowerCase();
-       if (uagent.search("iphone") > -1)
-          alert('true');
-       else
-          alert('false');
-    }
-</script>
-
- if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-    // Take the user to a different screen here.
-	<img id="qrcode" src=""/><br />
-
+<!--@media screen and (max-width: 1000px) {
+	#v { 
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		z-index: -100;
+		background-size: cover; 
+	}
+}
+</style-->
 }-->
