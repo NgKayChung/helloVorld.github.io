@@ -208,9 +208,13 @@ function flipCamera()
     output.src = URL.createObjectURL(event.target.files[0]);
   };
 		function startDecode(){
+			'use strict';
+    
+                   var qr = QCodeDecoder();
+
 		QCodeDecoder().decodeFromImage(output.toDataURL(), function(err, res){
-    document.body.appendChild(document.createTextNode(res||err))
-    });
+                var resElem = document.getElementById('result');
+	         resElem.innerHTML = "Scanned successfully!";    });
 		}
 
 	</script> 
