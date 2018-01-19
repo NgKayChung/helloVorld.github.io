@@ -207,16 +207,24 @@ function flipCamera()
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
   };
-		function startDecode(){
-			'use strict';
+var done = false;
+function startDecode(){
+	'use strict';
     
-                   var qr = QCodeDecoder();
+         var qr = QCodeDecoder();
 
-		QCodeDecoder().decodeFromImage(output.toDataURL(), function(err, res){
-                var resElem = document.getElementById('result');
-	         resElem.innerHTML = "Scanned successfully!";    });
+         qr.decodeFromImage(output.toDataURL(), function(err, res){
+		if(er) {
+		console.log(er);
+		       }
+		if(res && !done) {
+                 var resElem = document.getElementById('result');
+	         resElem.innerHTML = "Scanned successfully!"; 
+			         }
+		 
+		          }, true);
 		}
-
+				  
 	</script> 
     <body>
         
