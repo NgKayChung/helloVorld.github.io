@@ -218,7 +218,15 @@ function flipCamera()
 	<script>
 	function previewFile() {
 		
-  		var preview = document.querySelector('img');
+  		 var preview = document.querySelector('img');
+		 var canvas = document.createElement('canvas');
+  	canvas.width = img.width;
+  	canvas.height = img.height;
+  	var ctx = canvas.getContext('2d');
+  	// rotate by 90 deg
+  	ctx.rotate(Math.PI);
+  	ctx.translate(-img.width, -img.height);
+  	ctx.drawImage(img, 0, 0);
   		var file    = document.querySelector('input[type=file]').files[0];
   		var reader  = new FileReader();
 		
@@ -235,6 +243,11 @@ function flipCamera()
   }
 		
 }
+		function startDecode(){
+		QCodeDecoder().decodeFromImage(canvas.toDataURL(), function(err, res){
+    document.body.appendChild(document.createTextNode(res||err))
+    });
+		}
 /*var done = false;
 function startDecode() {
     'use strict';
@@ -261,7 +274,7 @@ function startDecode() {
 		}
     }, true);
 }*/
-		window.onload = function() {
+	/*	window.onload = function() {
   var img = document.querySelector('img');
   var canvas = document.createElement('canvas');
   canvas.width = img.width;
@@ -276,7 +289,7 @@ function startDecode() {
     document.body.appendChild(document.createTextNode(res||err))
     });
   
-}
+}*/
 	</script> 
     <body>
         <!--<input type="button" OnClick="DetectIphone()" value="Am I an Iphone?" />-->
