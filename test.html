@@ -209,14 +209,15 @@ function flipCamera()
 		var resize = new window.resize();
 		resize.init();
 
-  resize.photo(fileOrBlob, 800, 'dataURL', function (thumbnail) {
-    image.src = thumbnail;
-    });
+  
 
   reader.addEventListener("load", function () {
     preview.src = reader.result;
   }, false);
-
+		
+  resize.photo(fileOrBlob, 800, 'dataURL', function (thumbnail) {
+    image.src = thumbnail;
+    }
   if (file) {
     reader.readAsDataURL(file);
   }
