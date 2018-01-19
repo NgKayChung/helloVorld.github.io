@@ -208,19 +208,16 @@ function flipCamera()
     output.src = URL.createObjectURL(event.target.files[0]);
   };
 		function startDecode(){
-		QCodeDecoder().decodeFromImage(canvas.toDataURL(), function(err, res){
+		QCodeDecoder().decodeFromImage(output.toDataURL(), function(err, res){
     document.body.appendChild(document.createTextNode(res||err))
     });
 		}
 
 	</script> 
     <body>
-        <!--<input type="button" OnClick="DetectIphone()" value="Am I an Iphone?" />-->
-	<!--<input type="file" id="imageFile" name="imageFile" accept="image/*"><br />
-	<button type="button" onclick="previewFile()">Upload Image</button>
-	<img id="qrcode" src="" alt="Image preview..."><br />-->
+        
         <input type="file" accept="image/*" onchange="loadFile(event)">
-	<img id="output"/>
+	<img id="output" height="200" width="300" />
         
 
 	<button type="button" onclick="startDecode()">Decode the QR Code</button>
@@ -228,6 +225,10 @@ function flipCamera()
 	<div id="result"></div>
     </body>
 </html>
+<!--<input type="button" OnClick="DetectIphone()" value="Am I an Iphone?" />-->
+	<!--<input type="file" id="imageFile" name="imageFile" accept="image/*"><br />
+	<button type="button" onclick="previewFile()">Upload Image</button>
+	<img id="qrcode" src="" alt="Image preview..."><br />-->
 <!--<script>
     function DetectIphone()
     {
