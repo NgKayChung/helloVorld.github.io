@@ -218,9 +218,11 @@ function startDecode(){
 		console.log(er);
 		       }
 		if(res && !done) {
+			done=true;
+			alert(res);
                  var resElem = document.getElementById('result');
 	         resElem.innerHTML = "Scanned successfully!"; 
-			alert(res);
+			
 			         }
 		 
 		          }, true);
