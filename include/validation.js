@@ -154,4 +154,59 @@ if(mailid=="")
  {
   document.getElementById("number").innerHTML="";
  }
+/*function getState(bp) {
+   switch(bp) {
+       case '14': case '54': case '55': case '56': case '57':
+           return 'Federal Territory of Kuala Lumpur';
+       case '15': case '58':
+           return 'Federal Territory of Labuan';
+       case '16':
+           return 'Federal Territory of Putrajaya &amp; Cyberjaya';
+       case '01': case '21': case '22': case '23': case '24':
+           return 'Johor';
+       case '02': case '25': case '26': case '27':
+           return 'Kedah';
+       case '04': case '30':
+           return 'Melaka';
+       case '05': case '31': case '59':
+           return 'Negeri Sembilan';
+       case '06': case '32':
+           return 'Pahang';
+       case '07': case '34': case '35':
+           return 'Penang';
+       case '08': case '36': case '37': case '38': case '39':
+           return 'Perak'
+       case '09': case '40':
+           return 'Perlis';
+       case '10': case '41': case '42': case '43': case '44':
+           return 'Selangor';
+       case '11': case '45': case '46':
+           return 'Terengganu';
+       case '12': case '47': case '48': case '49':
+           return 'Sabah';
+       case '13': case '50': case '51': case '52': case '53':
+           return 'Sarawak';
+       default:
+           return 'Alien State';
+   }
+}
+function checkMe() {
+   var ele = document.getElementById('ic'),
+   errorContainer = document.getElementById('error');
+   errorContainer.style.display = 'none';
+   errorContainer.innerHTML = '';
+   ic = ele.value.replace(/[^\d.]/g, ""); //remove everything except numbers
+   ele.value = ic; //use filtered value
+
+   if(ic.length >= 12) {
+       var st = document.getElementById('state');
+       document.getElementById('state_container').style.display = 'block';
+       //you might want to check for other format e.g army etc etc
+       var bp = ic.substr(6,2); //get the state code
+       st.innerHTML = getState(bp);
+       return false; //change this to true to submit form
+   }
+   errorContainer.style.display = 'block';
+   errorContainer.innerHTML = 'Invalid IC';
+   return false;*/
 }
