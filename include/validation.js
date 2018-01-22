@@ -163,7 +163,7 @@ if(mailid=="")
   //document.getElementById("numb").innerHTML="";
  }
 //ic number
-function getState(bp) {
+/*function getState(bp) {
    switch(bp) {
        case '14': case '54': case '55': case '56': case '57':
            return 'Federal Territory of Kuala Lumpur';
@@ -218,4 +218,4 @@ function checkMe() {
    errorContainer.style.display = 'block';
    errorContainer.innerHTML = 'Invalid IC';
    return false;
-}
+}*/
