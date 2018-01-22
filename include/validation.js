@@ -1,7 +1,7 @@
-var fullname = "";
-var icnumber = "";
-var emailAddress = "";
-var phoneNumber = "";
+//var fullname = "";
+//var icnumber = "";
+//var emailAddress = "";
+//var phoneNumber = "";
 
 function validateInputs()
 {
@@ -154,7 +154,7 @@ if(mailid=="")
  {
   document.getElementById("number").innerHTML="";
  }
-/*function getState(bp) {
+function getState(bp) {
    switch(bp) {
        case '14': case '54': case '55': case '56': case '57':
            return 'Federal Territory of Kuala Lumpur';
@@ -208,5 +208,5 @@ function checkMe() {
    }
    errorContainer.style.display = 'block';
    errorContainer.innerHTML = 'Invalid IC';
-   return false;*/
+   return false;
 }
