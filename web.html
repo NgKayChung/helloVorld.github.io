@@ -69,7 +69,7 @@
     var regex = new RegExp(/^[\w\.\+_-]+[\w]+@(gmail|hotmail|outlook.live)\.com$/); 
     // Validate email address 
     if (!regex.test(x)) { 
-        alert("We only accept emails from gmail, hotmail, and outlook"); 
+        alert("Invalid Email, please try again. We only accept emails from gmail, hotmail, and outlook"); 
         return false; 
     } 
     else { 
@@ -120,9 +120,9 @@
  {
  document.getElementById("number").innerHTML="";
  }
- if(mob.length<10)
+ if(mob.length<10 || mob.length<11)
  {
- document.getElementById("number").innerHTML='Mobile number should be of 10 digits';
+ document.getElementById("number").innerHTML='Mobile number should be of 10 or 11 digits';
  document.getElementById("numb").focus();
  return false; 
  }
@@ -130,9 +130,9 @@
  {
   document.getElementById("number").innerHTML="";
  }
- if(mob.charCodeAt(0)!=57&&mob.charCodeAt(0)!=56&&mob.charCodeAt(0)!=55)
+ if(mob.charCodeAt(0)!=48)
  {
-  document.getElementById("number").innerHTML='Mobile Number should start with 9, 8 or 7';
+  document.getElementById("number").innerHTML='Mobile Number should start at 0';
   document.getElementById("numb").focus();
   return false;
  }
