@@ -66,10 +66,10 @@
                 }
 		    //email
     var x = document.getElementById("mail").value; 
-    var regex = new RegExp(/^[\w\.\+_-]+[\w]+@(this|that)domain\.com$/); 
+    var regex = new RegExp(/^[\w\.\+_-]+[\w]+@(gmail|hotmail|outlook.live)domain\.com$/); 
     // Validate email address 
     if (!regex.test(x)) { 
-        alert("Please use your @thisdomain.com or @thatdomain.com email address."); 
+        alert("We only accept emails from gmail, hotmail, and outlook"); 
         return false; 
     } 
     else { 
