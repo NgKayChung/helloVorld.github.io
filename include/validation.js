@@ -80,60 +80,66 @@ function validateInputs()
 //email
 if(mailid=="")
  {
- document.getElementById("email").innerHTML='Please enter your email Id.';
- document.getElementById("mail").focus();
+    alert("Please enter your email Id.");
+ //document.getElementById("email").innerHTML='Please enter your email Id.';
+ //document.getElementById("mail").focus();
  return false;
  }
  else
  {
-  document.getElementById("email").innerHTML="";
+  document.getElementById("mail").innerHTML="";
  }
  if((mailid.charCodeAt(mailid.length-4)!=46)&&(mailid.charCodeAt(mailid.length-3)!=46))
  {
- document.getElementById("email").innerHTML='Please enter valid email ID';
- document.getElementById("mail").focus();
+     alert("Please enter valid email ID");
+ //document.getElementById("email").innerHTML='Please enter valid email ID';
+ //document.getElementById("mail").focus();
  return false;
  }
  else
  {
-  document.getElementById("email").innerHTML="";
+  document.getElementById("mail").innerHTML="";
  }
  if((mailid.charCodeAt(mailid.length-9)!=64)&&(mailid.charCodeAt(mailid.length-10)!=64)&&(mailid.charCodeAt(mailid.length-11)!=64))
  {
- document.getElementById("email").innerHTML='Please enter valid email ID';
- document.getElementById("mail").focus();
+     alert("Please enter your email ID.");
+ //document.getElementById("email").innerHTML='Please enter valid email ID';
+ //document.getElementById("mail").focus();
  return false;
  }
  else
  {
-  document.getElementById("email").innerHTML="";
+  alert("You have successfully submited an email: "+mailid);   
  }
 
 //mobile
  if(mob=="")
  {
- document.getElementById("number").innerHTML='Please enter your mobile number';
- document.getElementById("numb").focus();
+     alert("Please enter your mobile number.");
+ //document.getElementById("number").innerHTML='Please enter your mobile number';
+ //document.getElementById("numb").focus();
  return false;
  }
  else
  {
- document.getElementById("number").innerHTML="";
+ document.getElementById("numb").innerHTML="";
  }
- if(mob.length<10)
+ if(mob.length<10 || mob.length<11)
  {
- document.getElementById("number").innerHTML='Mobile number should be of 10 digits';
- document.getElementById("numb").focus();
+     alert("Mobile number should be of 10 or 11 digits");
+ //document.getElementById("number").innerHTML='Mobile number should be of 10 digits';
+ //document.getElementById("numb").focus();
  return false; 
  }
  else
  {
-  document.getElementById("number").innerHTML="";
+  document.getElementById("numb").innerHTML="";
  }
  if(mob.charCodeAt(0)!=57&&mob.charCodeAt(0)!=56&&mob.charCodeAt(0)!=55)
  {
-  document.getElementById("number").innerHTML='Mobile Number should start with 9, 8 or 7';
-  document.getElementById("numb").focus();
+     alert("Mobile number should start with 9, 8, or 7");
+  //document.getElementById("number").innerHTML='Mobile Number should start with 9, 8 or 7';
+  //document.getElementById("numb").focus();
   return false;
  }
  var r=0;
@@ -146,14 +152,17 @@ if(mailid=="")
  }
  if(r!=0)
  {
-  document.getElementById("number").innerHTML='Please enter only numeric values in Mobile Number.';
-  document.getElementById("numb").focus();
+     alert("Please enter only numeric values in Mobile Number.");
+  //document.getElementById("number").innerHTML='Please enter only numeric values in Mobile Number.';
+  //document.getElementById("numb").focus();
   return false;
  }
  else
  {
-  document.getElementById("number").innerHTML="";
+     alert("You have successfully submited your Mobile Number: "+mob); 
+  //document.getElementById("numb").innerHTML="";
  }
+//ic number
 function getState(bp) {
    switch(bp) {
        case '14': case '54': case '55': case '56': case '57':
