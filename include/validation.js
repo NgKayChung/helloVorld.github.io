@@ -1,14 +1,14 @@
-//var fullname = "";
-//var icnumber = "";
-//var emailAddress = "";
-//var phoneNumber = "";
+var a = "";
+var icnumber = "";
+var mailid = "";
+var mob = "";
 
 function validateInputs()
 {
-   var a = document.getElementById('fullname').value;
-   var icnumber = document.getElementById('icnumber').value;
-   var mailid = document.getElementById('mail').value;
-   var mob = document.getElementById('numb').value;
+    a = document.getElementById('fullname').value;
+    icnumber = document.getElementById('icnumber').value;
+    mailid = document.getElementById('mail').value;
+    mob = document.getElementById('numb').value;
     
    /* if(fullname === "") {
         alert('Name is required');
