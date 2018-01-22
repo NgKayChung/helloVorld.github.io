@@ -65,11 +65,15 @@
                   alert("You have successfully submited a fullname: "+a);   
                 }
 		    //email
-		    var domains = new Array();
+		  var domains = new Array();
 domains.push("yahoo")
 domains.push("hotmail")
 domains.push("gmail")
-		var isBad = false;
+
+
+function ValidateEmailDomain(mail)
+{
+	var isBad = false;
 	var email = document.getElementById(mail).value;
 	var emailParts = email.split("@");
 	if (emailParts.length > 1)
