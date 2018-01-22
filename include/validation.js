@@ -5,7 +5,7 @@ var mob = "";
 
 function validateInputs()
 {
-    a = document.getElementById('fullname').value;
+    //a = document.getElementById('fullname').value;
     icnumber = document.getElementById('icnumber').value;
     mailid = document.getElementById('mail').value;
     mob = document.getElementById('numb').value;
@@ -20,7 +20,11 @@ function validateInputs()
     }*/
     
     //full name
-    if(a == "")
+   function validateForm()
+            {
+                var a = document.getElementById("fullname").value;
+                /*this will give alert if field is empty*/
+                if(a == "")
                 {
                     alert("fullname must be filled");
                     return false;
@@ -28,11 +32,11 @@ function validateInputs()
                 {
                    
                 }
-                /*this will give alert if special characters are entered*/
+                /*this will give alert if you entered any special characters*/
                 var i=0;
                 for(j=0;j<=a.length;j++)
                 {
-                    /*ascii character table on http://ascii.cl/htmlcodes.htm*/
+                    /*you can check all ascii character table on http://ascii.cl/htmlcodes.htm*/
                    if(a.charCodeAt(j)>=33 && a.charCodeAt(j)<=47 || a.charCodeAt(j)>=58 && a.charCodeAt(j)<=64 || a.charCodeAt(j)>=91 && a.charCodeAt(j)<=96 || a.charCodeAt(j)>=123 && a.charCodeAt(j)<=126)
                    {
                        i++;
@@ -53,7 +57,7 @@ function validateInputs()
                 var i=0;
                 for(j=0;j<=a.length;j++)
                 {
-                    
+                    /*you can check all ascii character table on http://ascii.cl/htmlcodes.htm*/
                    if(a.charCodeAt(j)>=48 && a.charCodeAt(j)<=57)
                    {
                        i++;
