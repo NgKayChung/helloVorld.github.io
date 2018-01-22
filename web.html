@@ -3,6 +3,10 @@
 <title>Form</title>
 <!--<script type = "text/javascript" src = "include\validation.js"></script>-->
 	 <script>
+		 var domains = new Array();
+domains.push("yahoo")
+domains.push("hotmail")
+domains.push("gmail")
             function validateForm()
             {
                 var a = document.getElementById("fullname").value;
@@ -64,7 +68,31 @@
                   alert("You have successfully submited a fullname: "+a);   
                 }
 		    //email
- var mailid=document.getElementById("mail").value;
+		var isBad = false;
+	var email = document.getElementById(mail).value;
+	var emailParts = email.split("@");
+	if (emailParts.length > 1)
+	{
+		var matchPosition;
+		
+		for (var i in domains)
+		{
+			matchPosition = emailParts[1].search(domains[i]);
+		
+			if (matchPosition != -1)
+			{
+				isBad = true;
+			}
+		}
+	}
+	
+	if (isBad)
+	{
+		alert('the email submitted is not accepted');
+	}
+}
+    
+ /*var mailid=document.getElementById("mail").value;
  if(mailid=="")
  {
  document.getElementById("email").innerHTML='Please enter your email Id.';
@@ -94,7 +122,7 @@
  else
  {
   document.getElementById("email").innerHTML="";
- }
+ }*/
 		    //mobile
 		    
  var mob=document.getElementById("numb").value;
