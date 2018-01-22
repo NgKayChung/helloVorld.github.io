@@ -65,37 +65,16 @@
                   alert("You have successfully submited a fullname: "+a);   
                 }
 		    //email
-		  var domains = new Array();
-domains.push("yahoo")
-domains.push("hotmail")
-domains.push("gmail")
-
-
-function ValidateEmailDomain(mail)
-{
-	var isBad = false;
-	var email = document.getElementById(mail).value;
-	var emailParts = email.split("@");
-	if (emailParts.length > 1)
-	{
-		var matchPosition;
-		
-		for (var i in domains)
-		{
-			matchPosition = emailParts[1].search(domains[i]);
-		
-			if (matchPosition != -1)
-			{
-				isBad = true;
-			}
-		}
-	}
-	
-	if (isBad)
-	{
-		alert('the email submitted is not accepted');
-	}
-}
+    var x = document.getElementById("mail").value; 
+    var regex = new RegExp(/^[\w\.\+_-]+[\w]+@(this|that)domain\.com$/); 
+    // Validate email address 
+    if (!regex.test(x)) { 
+        alert("Please use your @thisdomain.com or @thatdomain.com email address."); 
+        return false; 
+    } 
+    else { 
+        alert('Address valid.'); 
+    } 
     
  /*var mailid=document.getElementById("mail").value;
  if(mailid=="")
