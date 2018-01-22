@@ -95,6 +95,53 @@
  {
   document.getElementById("email").innerHTML="";
  }
+		    //mobile
+		    
+ var mob=document.getElementById("numb").value;
+ if(mob=="")
+ {
+ document.getElementById("number").innerHTML='Please enter your mobile number';
+ document.getElementById("numb").focus();
+ return false;
+ }
+ else
+ {
+ document.getElementById("number").innerHTML="";
+ }
+ if(mob.length<10)
+ {
+ document.getElementById("number").innerHTML='Mobile number should be of 10 digits';
+ document.getElementById("numb").focus();
+ return false; 
+ }
+ else
+ {
+  document.getElementById("number").innerHTML="";
+ }
+ if(mob.charCodeAt(0)!=57&&mob.charCodeAt(0)!=56&&mob.charCodeAt(0)!=55)
+ {
+  document.getElementById("number").innerHTML='Mobile Number should start with 9, 8 or 7';
+  document.getElementById("numb").focus();
+  return false;
+ }
+ var r=0;
+ for(y=0;y<mob.length;y++)
+ {
+ if((mob.charCodeAt(y)>=32&&mob.charCodeAt(y)<=47)||(mob.charCodeAt(y)>=58&&mob.charCodeAt(y)<=255)||(mob.charCodeAt(y)>=338&&mob.charCodeAt(y)<=402)||(mob.charCodeAt(y)>=8211&&mob.charCodeAt(y)<=8482))
+ {
+  r++;
+ }
+ }
+ if(r!=0)
+ {
+  document.getElementById("number").innerHTML='Please enter only numeric values in Mobile Number.';
+  document.getElementById("numb").focus();
+  return false;
+ }
+ else
+ {
+  document.getElementById("number").innerHTML="";
+ }
  }
                 
         </script>
@@ -105,12 +152,13 @@
 	<p>Full Name <span>*</span></p>
 	<p><input type = "text"  id = "fullname" /></p><br/>
 	<p>Identity Card Number<span>*</span></p>
-	<p><input type = "text"  id = "icnumber" /></p><br/>
+	<!--<p><input type = "text"  id = "icnumber" /></p><br/>-->
 	<p>Email Address <span>*</span></p>
 	<p><input type = "text" id = "mail" /></p><br/>
 	<span id="email" style="color:red;"></span><br/>
 	<p>Phone Number <span>*</span></p>
 	<p><input type = "text"  id = "numb" /></p><br/>
+	<span id="number" style="color:red;"></span><br/>
 	<p><input type = "checkbox" id = "tnc" name = "tnc" required/> I have read and agreed to the <a href = "#">Terms &amp; Conditions</a></p><br/>
     <p><input type = "submit" name = "submit" value = "Submit"/></p>
 </form>
