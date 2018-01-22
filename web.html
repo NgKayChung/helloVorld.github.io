@@ -3,10 +3,7 @@
 <title>Form</title>
 <!--<script type = "text/javascript" src = "include\validation.js"></script>-->
 	 <script>
-		 var domains = new Array();
-domains.push("yahoo")
-domains.push("hotmail")
-domains.push("gmail")
+		 
             function validateForm()
             {
                 var a = document.getElementById("fullname").value;
@@ -68,6 +65,10 @@ domains.push("gmail")
                   alert("You have successfully submited a fullname: "+a);   
                 }
 		    //email
+		    var domains = new Array();
+domains.push("yahoo")
+domains.push("hotmail")
+domains.push("gmail")
 		var isBad = false;
 	var email = document.getElementById(mail).value;
 	var emailParts = email.split("@");
