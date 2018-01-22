@@ -5,7 +5,7 @@ var mob = "";
 
 function validateInputs()
 {
-    //a = document.getElementById('fullname').value;
+    a = document.getElementById('fullname').value;
     icnumber = document.getElementById('icnumber').value;
     mailid = document.getElementById('mail').value;
     mob = document.getElementById('numb').value;
@@ -20,9 +20,8 @@ function validateInputs()
     }*/
     
     //full name
-   function validateForm()
-            {
-                var a = document.getElementById("fullname").value;
+   
+               
                 /*this will give alert if field is empty*/
                 if(a == "")
                 {
@@ -80,7 +79,7 @@ function validateInputs()
                 {
                   alert("You have successfully submited a fullname: "+a);   
                 }
-            }
+           
 //email
 if(mailid=="")
  {
