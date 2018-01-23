@@ -64,6 +64,56 @@
                 {
                   alert("You have successfully submited a fullname: "+a);   
                 }
+ //ic number
+function getState(bp) {
+   switch(bp) {
+       case '14': case '54': case '55': case '56': case '57':
+           return 'Federal Territory of Kuala Lumpur';
+       case '15': case '58':
+           return 'Federal Territory of Labuan';
+       case '16':
+           return 'Federal Territory of Putrajaya &amp; Cyberjaya';
+       case '01': case '21': case '22': case '23': case '24':
+           return 'Johor';
+       case '02': case '25': case '26': case '27':
+           return 'Kedah';
+       case '04': case '30':
+           return 'Melaka';
+       case '05': case '31': case '59':
+           return 'Negeri Sembilan';
+       case '06': case '32':
+           return 'Pahang';
+       case '07': case '34': case '35':
+           return 'Penang';
+       case '08': case '36': case '37': case '38': case '39':
+           return 'Perak'
+       case '09': case '40':
+           return 'Perlis';
+       case '10': case '41': case '42': case '43': case '44':
+           return 'Selangor';
+       case '11': case '45': case '46':
+           return 'Terengganu';
+       case '12': case '47': case '48': case '49':
+           return 'Sabah';
+       case '13': case '50': case '51': case '52': case '53':
+           return 'Sarawak';
+       default:
+           return 'Alien State';
+   }
+}
+function checkMe() {
+   var ele = document.getElementById('icnumber'),
+   ic = ele.value.replace(/[^\d.]/g, ""); 
+   ele.value = ic; 
+   if(ic.length >= 12) {
+       var st = document.getElementById('state');
+       var bp = ic.substr(6,2); 
+       st.innerHTML = getState(bp);
+       return true; 
+   }
+   alert('Invalid IC');
+   return false;
+}
 		    //email
     var x = document.getElementById("mail").value; 
     var regex = new RegExp(/^[\w\.\+_-]+[\w]+@(gmail|hotmail|outlook.live)\.com$/); 
@@ -76,37 +126,7 @@
         alert('Address valid.'); 
     } 
     
- /*var mailid=document.getElementById("mail").value;
- if(mailid=="")
- {
- document.getElementById("email").innerHTML='Please enter your email Id.';
- document.getElementById("mail").focus();
- return false;
- }
- else
- {
-  document.getElementById("email").innerHTML="";
- }
- if((mailid.charCodeAt(mailid.length-4)!=46)&&(mailid.charCodeAt(mailid.length-3)!=46))
- {
- document.getElementById("email").innerHTML='Please enter valid email ID';
- document.getElementById("mail").focus();
- return false;
- }
- else
- {
-  document.getElementById("email").innerHTML="";
- }
- if((mailid.charCodeAt(mailid.length-9)!=64)&&(mailid.charCodeAt(mailid.length-10)!=64)&&(mailid.charCodeAt(mailid.length-11)!=64))
- {
- document.getElementById("email").innerHTML='Please enter valid email ID';
- document.getElementById("mail").focus();
- return false;
- }
- else
- {
-  document.getElementById("email").innerHTML="";
- }*/
+ 
 		    //mobile
 		    
  var mob=document.getElementById("numb").value;
@@ -163,15 +183,15 @@
 	<!--<p><span>*</span> indicates required field</p><br/>-->
 	<p>Full Name <span>*</span></p>
 	<p><input type = "text"  id = "fullname" /></p><br/>
-	<!--<p>Identity Card Number<span>*</span></p>
-	<p><input type = "text"  id = "icnumber" /></p><br/>-->
+	<p>Identity Card Number<span>*</span></p>
+	<p><input type = "text" id = "icnumber_1" name = "icnumber_1" required/> - <input type = "text" id = "icnumber_2" name = "icnumber_2" required/> - <input type = "text" id = "icnumber_3" name = "icnumber_3" required/></p><br/>
 	<p>Email Address <span>*</span></p>
 	<p><input type = "text" id = "mail" /></p><br/>
 	<span id="email" style="color:red;"></span><br/>
 	<p>Phone Number <span>*</span></p>
 	<p><input type = "text"  id = "numb" /></p><br/>
 	<span id="number" style="color:red;"></span><br/>
-	<!--<p><input type = "checkbox" id = "tnc" name = "tnc" required/> I have read and agreed to the <a href = "#">Terms &amp; Conditions</a></p><br/>-->
+	<p><input type = "checkbox" id = "tnc" name = "tnc" required/> I have read and agreed to the <a href = "#">Terms &amp; Conditions</a></p><br/>
     <p><input type = "submit" name = "submit" value = "Submit"/></p>
 </form>
 </body>
